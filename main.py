@@ -40,4 +40,24 @@ async def search_keyword(keyword: str):
     return {"keyword": keyword}
 
 # get cast info
-@app.get()
+@app.get("/cast/{movieId}")
+async def get_cast(movieId: int):
+    casts = await db.getCasts(movieId=movieId)
+    return {"casts": casts}
+
+# get actor movies ordered by popularity
+@app.get("/actor/movies/{actorId}/popularity")
+async def get_actor_movie(actorId: int):
+    movies = await db.getActorMoviesOrderByPopularity(actorId=actorId)
+    return {"movies": movies}
+
+# get actor movies ordered by vote average
+@app.get("/actor/movies/{actorId}/vote")
+async def get_actor_movie(actorId: int):
+    movies = await db.getActorMoviesOrderByVote(actorId=actorId)
+    return {"movies": movies}
+
+@app.get("/actor/{actorId}")
+async def get_actor(actorId: int):
+    actor = await db.getActor(actorId=actorId)
+    return {"actor": actor}
