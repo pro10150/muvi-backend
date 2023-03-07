@@ -282,8 +282,14 @@ async def getAllCollections():
 
 async def addMovie(movie: item.movieItem):
     movie_id = random.randint(0, 99999999)
-    sql = "INSERT INTO movies (belongs_to_collection, movie_id, overview, popularity, release_date, runtime, title, vote_average, vote_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    values = (movie.collection, movie_id, movie.overview, 0, movie.release_date, movie.runtime, movie.title, 0, 0)
+    sql = "INSERT INTO movies (belongs_to_collection, movie_id, overview, popularity, release_date, runtime, title, vote_average, vote_count, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    values = (movie.collection, movie_id, movie.overview, 0, movie.release_date, movie.runtime, movie.title, 0, 0, movie.image)
+    c.execute(sql, values)
+    conn.commit()
+
+async def addCast(cast: item.castItem):
+    sql = "INSERT INTO casts (movie_id, actor_id) VALUES (?, ?)"
+    values = (cast.movie_id, cast.actor_id)
     c.execute(sql, values)
     conn.commit()
 
@@ -291,5 +297,11 @@ async def addCollection(collection: item.collectionItem):
     collection_id = random.randint(0, 99999999)
     sql = "INSERT INTO collections (collection_id, name) VALUES (?, ?)"
     values = (collection_id, collection.name)
+    c.execute(sql, values)
+    conn.commit()
+
+async def addActor(actor: item.actorItem):
+    sql = "INSERT INTO actors (gender, firstName, middleName, familyName, profile_path, image, birthday) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    values = (actor.gender, actor.firstName, actor.middleName, actor.familyName, "", actor.image, actor.birthday)
     c.execute(sql, values)
     conn.commit()

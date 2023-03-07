@@ -109,9 +109,23 @@ async def create_movie(movie: item.movieItem):
     await db.addMovie(movie=movie)
     return {"status": 1}
 
+# post cast
+@app.post("/add/movie/actor")
+async def create_actor_movie(cast: item.castItem):
+    await db.addCast(cast=cast)
+    return {"status": 1}
+
 # post collection
 @app.post("/add/collection/")
 async def create_collection(collection: item.collectionItem):
     await db.addCollection(collection=collection)
     return {"status": 1}
+
+# post movie collection
+
+# post actor
+@app.post("/add/actor")
+async def create_actor(actor: item.actorItem):
+    await db.addActor(actor=actor)
+    return {"status: 1"}
     
