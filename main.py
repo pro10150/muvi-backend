@@ -133,4 +133,9 @@ async def create_actor(actor: item.actorItem):
 @app.post("/forTestingPurposeOnly")
 async def testing():
     return{"status": "Fuck you"}
+
+# home
+@app.post("/")
+async def home():
+    return{"status": "This is homepage. You have successfully logged in"}
     
