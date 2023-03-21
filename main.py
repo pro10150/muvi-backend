@@ -127,5 +127,10 @@ async def create_collection(collection: item.collectionItem):
 @app.post("/add/actor")
 async def create_actor(actor: item.actorItem):
     await db.addActor(actor=actor)
-    return {"status: 1"}
+    return {"status": 1}
+
+# test
+@app.post("/forTestingPurposeOnly")
+async def testing():
+    return{"status": "Fuck you"}
     
