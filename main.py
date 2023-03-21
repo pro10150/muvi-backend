@@ -51,7 +51,7 @@ async def get_movie(movieId: int):
     }
 
 # search movie using keyword
-@app.get("/{keyword}")
+@app.get("/search/{keyword}")
 async def search_keyword(keyword: str):
     # Wait for AI
     return {"keyword": keyword}
