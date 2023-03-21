@@ -130,12 +130,12 @@ async def create_actor(actor: item.actorItem):
     return {"status": 1}
 
 # test
-@app.post("/forTestingPurposeOnly")
+@app.get("/forTestingPurposeOnly")
 async def testing():
     return{"status": "Fuck you"}
 
 # home
-@app.post("/")
+@app.get("/")
 async def home():
     return{"status": "This is homepage. You have successfully logged in"}
     
