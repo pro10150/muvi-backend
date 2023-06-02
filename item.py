@@ -6,9 +6,7 @@ class movieItem(BaseModel):
     runtime: int
     release_date: str
     collection: Union[int, None] = None
-    genres: List[int]
     overview: str
-    actors: List[int]
     image: Union[str, None] = None
 
 class collectionItem(BaseModel):
@@ -24,4 +22,14 @@ class actorItem(BaseModel):
 
 class castItem(BaseModel):
     movie_id: int
+    character: str
     actor_id: int
+    order: int
+
+class movieGenreItem(BaseModel):
+    movie_id: int
+    genre_id: int
+
+class loginItem(BaseModel):
+    user: str
+    password: str
